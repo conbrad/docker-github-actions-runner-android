@@ -79,6 +79,11 @@ ENV PATH="${PATH}:/usr/local/lib/android/sdk/platform-tools/"
 # ANDROID_HOME is deprecated, but older versions of Gradle rely on it
 ENV ANDROID_SDK_ROOT=$ANDROID_ROOT/sdk
 ENV ANDROID_HOME=$ANDROID_ROOT/sdk
+
+# Workaround to avoid this warning:
+#   fatal: detected dubious ownership in repository at '/dir'
+RUN git config --global --add safe.directory "$(pwd)"
+
 LABEL maintainer="ernstjason1@gmail.com"
 
 # NB: there is no CMD so it will work the same as the base image. See the
